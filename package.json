@@ -1,7 +1,7 @@
 {
   "name": "vue-upload-multiple-image",
   "description": "A Vue.js project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Lee Khang <lekhang2512@gmail.com>",
   "license": "MIT",
   "scripts": {
