@@ -169,6 +169,8 @@ export default {
       let index = findIndex(this.images, { highlight: 1 })
       if (index > -1) {
         return this.images[index].path
+      } else {
+        return this.images.length ? this.images[0].path : ''
       }
     },
     imageDefault () {
