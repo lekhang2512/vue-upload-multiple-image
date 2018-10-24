@@ -68,6 +68,8 @@ How to use:
 [
   {
     path: 'http://example.com/image.jpg',
+    default: 1,
+    highlight: 1,
     caption: 'caption to display. receive', // Optional
   }
 ]
