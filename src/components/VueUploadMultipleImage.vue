@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="outline: none;">
     <div class="image-container position-relative text-center" v-if="!images.length">
       <div class="drag-upload-cover position-absolute" v-if="isDragover" @drop="onDrop">
         <div class="centered full-width text-center text-primary">
