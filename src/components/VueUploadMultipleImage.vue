@@ -188,6 +188,9 @@ export default {
       }
       forEach(files, (value, index) => {
         this.createImage(value)
+        if (!this.multiple) {
+          return false
+        }
       })
       if (document.getElementById('image-upload')) {
         document.getElementById('image-upload').value = []
