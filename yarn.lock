@@ -5306,10 +5306,10 @@ vue-hot-reload-api@^2.2.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.1.tgz#b2d3d95402a811602380783ea4f566eb875569a2"
   integrity sha512-AA86yKZ5uOKz87/q1UpngEXhbRkaYg1b7HMMVRobNV1IVKqZe8oLIzo6iMocVwZXnYitlGwf2k4ZRLOZlS8oPQ==
 
-vue-image-lightbox-carousel@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/vue-image-lightbox-carousel/-/vue-image-lightbox-carousel-1.0.5.tgz#5eab323cade6547246a5d5eac062b2d545d139bb"
-  integrity sha512-0+9XW8uAqpcyEaRORjVxjlsnKYEMpWpolCwGirobOhHneF2qY5BE/bUDYacNRXc3ZChJ3jQuNBIXDfBmqFCN2w==
+vue-image-lightbox-carousel@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/vue-image-lightbox-carousel/-/vue-image-lightbox-carousel-1.0.7.tgz#f628b149f28b72ab282d00b21811521f138bcfa9"
+  integrity sha512-a3y2Nd5EupVseJaCb8xQu1IbE4JEjOKjb5qmHO98En9MRjWDOOKspE3SUyUir1/HpyYY+6Wg3VgrjURsDFZM2A==
   dependencies:
     vue "^2.5.11"
     vue-awesome-swiper "^3.1.3"

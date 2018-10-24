@@ -25,7 +25,7 @@ export default {
     uploadImageSuccess(formData, index, fileList) {
       console.log('data', formData, index, fileList)
       // Upload image api
-      // axios.post('http://your-url-upload', { data: formData }).then(response => {
+      // axios.post('http://gostore.gostore-api.test/api/items/upload', formData).then(response => {
       //   console.log(response)
       // })
     },
