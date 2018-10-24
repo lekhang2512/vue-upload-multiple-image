@@ -1,7 +1,7 @@
 {
   "name": "vue-upload-multiple-image",
   "description": "A Vue.js project",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Lee Khang <lekhang2512@gmail.com>",
   "license": "MIT",
   "main": "src/main.js",
@@ -13,7 +13,7 @@
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
     "vue": "^2.5.11",
-    "vue-image-lightbox-carousel": "^1.0.5",
+    "vue-image-lightbox-carousel": "^1.0.7",
     "vue-popperjs": "^1.5.3"
   },
   "browserslist": [
