@@ -17,7 +17,7 @@
           <a class="browse-text">{{browseText}}</a>
         </div>
         <div class="image-input position-absolute full-width full-height">
-          <label for="image-upload" class="full-width full-height cursor-pointer">
+          <label :for="idUpload" class="full-width full-height cursor-pointer">
           </label>
         </div>
       </div>
@@ -52,7 +52,7 @@
           <a class="text-small mark-text-primary cursor-pointer" @click.prevent="markIsPrimary(currentIndexImage)" v-show="!imageDefault">{{markIsPrimaryText}}</a>
         </div>
         <div class="display-flex">
-          <label class="image-edit display-flex cursor-pointer" for="image-edit">
+          <label class="image-edit display-flex cursor-pointer" :for="idEdit">
             <svg class="image-icon-edit" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M469.56 42.433C420.927-6.199 382.331-.168 378.087.68l-4.8.96L36.895 338.001 0 512l173.985-36.894 336.431-336.399.941-4.86c.826-4.257 6.65-42.984-41.797-91.414zM41.944 470.057L64.3 364.617c12.448 3.347 31.968 11.255 50.51 29.794 18.96 18.963 27.84 39.986 31.875 53.436l-104.741 22.21zm132.504-41.134c-6.167-16.597-17.199-37.794-36.775-57.371C119 352.88 99.435 342.57 83.739 336.879l155.156-155.15 97.066-97.051c11.069 2.074 34.864 8.95 57.253 31.338 22.708 22.708 30.95 48.358 33.734 60.428l-96.685 96.663-155.815 155.816zm278.41-278.383c-6.167-16.6-17.196-37.8-36.781-57.384-18.669-18.667-38.228-28.977-53.92-34.668l26.118-26.113c8.785.484 30.373 4.87 58.423 32.918l.001.002c28.085 28.074 32.467 49.675 32.946 58.463l-26.787 26.782z"></path></svg>
           </label>
 
@@ -72,14 +72,14 @@
       <div class="image-list-item position-relative cursor-pointer display-flex justify-content-center align-items-center" v-if="images.length < maxImage">
         <svg class="icon add-image-svg" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M511.5 227.5h-227V.5h-57v227H-.5v57h228v228h57v-228h227z"></path></svg>
         <div class="input-add-image position-absolute full-width full-height">
-          <label for="image-upload" class="display-block full-width full-height cursor-pointer">
+          <label :for="idUpload" class="display-block full-width full-height cursor-pointer">
           </label>
         </div>
       </div>
     </div>
     <div>
-      <input id="image-upload" @change="uploadFieldChange" name="images" :multiple="multiple" :accept="accept" type="file">
-      <input id="image-edit" @change="editFieldChange" name="image" :accept="accept" type="file">
+      <input class="display-none" :id="idUpload" @change="uploadFieldChange" name="images" :multiple="multiple" :accept="accept" type="file">
+      <input class="display-none" :id="idEdit" @change="editFieldChange" name="image" :accept="accept" type="file">
     </div>
 
     <vue-image-lightbox-carousel
@@ -149,6 +149,14 @@ export default {
     maxImage: {
       type: Number,
       default: 5
+    },
+    idUpload: {
+      type: String,
+      default: 'image-upload'
+    },
+    idEdit: {
+      type: String,
+      default: 'image-edit'
     }
   },
   data () {
@@ -194,8 +202,8 @@ export default {
           return false
         }
       })
-      if (document.getElementById('image-upload')) {
-        document.getElementById('image-upload').value = []
+      if (document.getElementById(this.idUpload)) {
+        document.getElementById(this.idUpload).value = []
       }
     },
     onDragover () {
@@ -243,8 +251,8 @@ export default {
       forEach(files, (value, index) => {
         this.createImage(value)
       })
-      if (document.getElementById('image-upload')) {
-        document.getElementById('image-upload').value = []
+      if (document.getElementById(this.idUpload)) {
+        document.getElementById(this.idUpload).value = []
       }
     },
     editFieldChange (e) {
@@ -255,8 +263,8 @@ export default {
       forEach(files, (value, index) => {
         this.editImage(value)
       })
-      if (document.getElementById('image-edit')) {
-        document.getElementById('image-edit').value = ''
+      if (document.getElementById(this.idEdit)) {
+        document.getElementById(this.idEdit).value = ''
       }
     },
     changeHighlight (currentIndex) {
@@ -451,12 +459,10 @@ export default {
   margin: 0;
   line-height: 1.5;
 }
-#image-upload {
+.display-none {
   display: none;
 }
-#image-edit {
-  display: none;
-}
+
 /* list images*/
 .image-list {
   border: 1px solid #D6D6D6;

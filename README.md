@@ -1,3 +1,4 @@
+
 # vue-upload-multiple-image
 A simple upload multiple image component for Vuejs
 [NPM Package](https://www.npmjs.com/package/vue-upload-multiple-image)
@@ -84,6 +85,8 @@ How to use:
       @edit-image="editImage"
       @data-change="dataChange"
       :data-images="images"
+      idUpload="myIdUpload"
+      editUpload="myIdEdit"
       ></vue-upload-multiple-image>
   </div>
 </template>
@@ -170,6 +173,18 @@ a {
     </tr>
   </thead>
   <tbody>
+  <tr>
+      <td>idUpload</td>
+      <td>String</td>
+      <td>image-upload</td>
+      <td>Id of input upload</td>
+    </tr>
+    <tr>
+      <td>idEdit</td>
+      <td>String</td>
+      <td>image-edit</td>
+      <td>Id of input edit</td>
+    </tr>
     <tr>
       <td>dragText</td>
       <td>String</td>
