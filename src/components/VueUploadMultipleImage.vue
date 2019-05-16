@@ -196,6 +196,9 @@ export default {
       if (!files.length) {
         return false
       }
+      if(!this.isValidNumberOfImages(files.length)){
+        return false
+      }
       forEach(files, (value, index) => {
         this.createImage(value)
         if (!this.multiple) {
@@ -248,6 +251,9 @@ export default {
       if (!files.length) {
         return false
       }
+      if(!this.isValidNumberOfImages(files.length)){
+        return false
+      }
       forEach(files, (value, index) => {
         this.createImage(value)
       })
@@ -258,6 +264,9 @@ export default {
     editFieldChange (e) {
       let files = e.target.files || e.dataTransfer.files
       if (!files.length) {
+        return false
+      }
+      if(!this.isValidNumberOfImages(files.length)){
         return false
       }
       forEach(files, (value, index) => {
@@ -317,6 +326,14 @@ export default {
         this.showLightbox = true
       } else {
         this.showLightbox = false
+      }
+    },
+    isValidNumberOfImages(amount) {
+      if (amount > this.maxImage) {
+        this.$emit('limit-exceeded', amount)
+        return false
+      } else {
+        return true
       }
     }
   },
