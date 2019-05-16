@@ -5,6 +5,7 @@
       @before-remove="beforeRemove"
       @edit-image="editImage"
       @data-change="dataChange"
+      @limit-exceeded="limitExceeded"
       ></vue-upload-multiple-image>
   </div>
 </template>
@@ -42,6 +43,9 @@ export default {
     },
     dataChange (data) {
       console.log(data)
+    },
+    limitExceeded(amount){
+      console.log(amount)
     }
   }
 }
