@@ -269,7 +269,9 @@ export default {
     },
     changeHighlight (currentIndex) {
       this.currentIndexImage = currentIndex
-      this.images.map((item, index) => {
+      let arr = this.images
+      this.images = []
+      arr.map((item, index) => {
         if (currentIndex === index) {
           item.highlight = 1
         } else {
@@ -277,6 +279,7 @@ export default {
         }
         return item
       })
+      this.images = arr
     },
     markIsPrimary (currentIndex) {
       this.images.map((item, index) => {

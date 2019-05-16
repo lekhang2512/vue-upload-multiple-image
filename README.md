@@ -1,4 +1,5 @@
 
+
 # vue-upload-multiple-image
 A simple upload multiple image component for Vuejs
 [NPM Package](https://www.npmjs.com/package/vue-upload-multiple-image)
@@ -60,7 +61,6 @@ How to use:
       @upload-success="uploadImageSuccess"
       @before-remove="beforeRemove"
       @edit-image="editImage"
-      @data-change="dataChange"
       :data-images="images"
       ></vue-upload-multiple-image>
 ```
@@ -83,7 +83,6 @@ How to use:
       @upload-success="uploadImageSuccess"
       @before-remove="beforeRemove"
       @edit-image="editImage"
-      @data-change="dataChange"
       :data-images="images"
       idUpload="myIdUpload"
       editUpload="myIdEdit"
@@ -122,9 +121,6 @@ export default {
     },
     editImage (formData, index, fileList) {
       console.log('edit data', formData, index, fileList)
-    },
-    dataChange (data) {
-      console.log(data)
     }
   }
 }
@@ -283,6 +279,11 @@ a {
       <td>mark-is-primary</td>
       <td>(index, fileList)</td>
       <td>Set default image</td>
+    </tr>
+    <tr>
+      <td>limit-exceeded</td>
+      <td>amount</td>
+      <td>Limit exceeded images when drop</td>
     </tr>
   </tbody>
 </table>
