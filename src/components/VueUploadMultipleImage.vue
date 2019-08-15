@@ -359,17 +359,11 @@ export default {
     }
   },
   mounted () {
-    // ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach((event) => {
-    //   window.addEventListener(event, (e) => {
-    //     e.preventDefault()
-    //     e.stopPropagation()
-    //   })
-    // })
-    // document.body.addEventListener('dragleave', (event) => {
-    //   event.stopPropagation()
-    //   event.preventDefault()
-    //   this.isDragover = false
-    // })
+    document.body.addEventListener('dragleave', (event) => {
+      event.stopPropagation()
+      event.preventDefault()
+      this.isDragover = false
+    })
   },
   created () {
     this.images = []
