@@ -1,5 +1,14 @@
 <template>
-  <div style="outline: none;">
+  <div 
+    style="outline: none;"
+    @drag="preventEvent"
+    @dragstart="preventEvent"
+    @dragend="preventEvent"
+    @dragover="preventEvent"
+    @dragenter="preventEvent"
+    @dragleave="preventEvent"
+    @drop="preventEvent"
+  >
     <div class="image-container position-relative text-center" v-if="!images.length">
       <div class="drag-upload-cover position-absolute" v-if="isDragover" @drop="onDrop">
         <div class="centered full-width text-center text-primary">
@@ -188,6 +197,10 @@ export default {
     }
   },
   methods: {
+    preventEvent (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    },
     onDrop (e) {
       this.isDragover = false
       e.stopPropagation()
@@ -346,17 +359,17 @@ export default {
     }
   },
   mounted () {
-    ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach((event) => {
-      window.addEventListener(event, (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-      })
-    })
-    document.body.addEventListener('dragleave', (event) => {
-      event.stopPropagation()
-      event.preventDefault()
-      this.isDragover = false
-    })
+    // ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach((event) => {
+    //   window.addEventListener(event, (e) => {
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //   })
+    // })
+    // document.body.addEventListener('dragleave', (event) => {
+    //   event.stopPropagation()
+    //   event.preventDefault()
+    //   this.isDragover = false
+    // })
   },
   created () {
     this.images = []
