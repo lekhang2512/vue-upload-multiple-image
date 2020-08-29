@@ -167,6 +167,7 @@
           </div>
           <div class="display-flex">
             <label
+              v-if="showEdit"
               class="image-edit display-flex cursor-pointer"
               :for="idEdit"
             >
@@ -182,6 +183,7 @@
             </label>
 
             <a
+              v-if="showDelete"
               class="image-delete display-flex cursor-pointer"
               @click.prevent="deleteImage(currentIndexImage)"
             >
@@ -220,7 +222,7 @@
       </div>
       <div
         class="image-list-item position-relative cursor-pointer display-flex justify-content-center align-items-center"
-        v-if="images.length < maxImage"
+        v-if="(images.length < maxImage) && showAdd"
       >
         <svg
           class="icon add-image-svg"
@@ -249,6 +251,7 @@
         :multiple="multiple"
         :accept="accept"
         type="file"
+        :disabled="disabled"
       >
       <input
         class="display-none"
@@ -257,6 +260,7 @@
         name="image"
         :accept="accept"
         type="file"
+        :disabled="disabled"
       >
     </div>
 
@@ -335,7 +339,23 @@ export default {
     idEdit: {
       type: String,
       default: 'image-edit'
-    }
+    },
+    showEdit: {
+      type: Boolean,
+      default: true
+    },
+    showDelete: {
+      type: Boolean,
+      default: true
+    },
+    showAdd: {
+      type: Boolean,
+      default: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
   },
   data () {
     return {
@@ -395,6 +415,7 @@ export default {
       this.isDragover = true
     },
     createImage (file) {
+      if (this.disabled) return
       let reader = new FileReader()
       let formData = new FormData()
       formData.append('file', file)
@@ -413,6 +434,7 @@ export default {
       reader.readAsDataURL(file)
     },
     editImage (file) {
+      if (this.disabled) return
       let reader = new FileReader()
       let formData = new FormData()
       formData.append('file', file)
