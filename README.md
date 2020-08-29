@@ -247,6 +247,30 @@ a {
       <td>5</td>
       <td>Maximum upload image</td>
     </tr>
+    <tr>
+      <td>showEdit</td>
+      <td>Boolean</td>
+      <td>true</td>
+      <td>Show action edit</td>
+    </tr>
+    <tr>
+      <td>showDelete</td>
+      <td>Boolean</td>
+      <td>true</td>
+      <td>Show action delete</td>
+    </tr>
+    <tr>
+      <td>showAdd</td>
+      <td>Boolean</td>
+      <td>true</td>
+      <td>Show action add</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td>Disable upload image</td>
+    </tr>
   </tbody>
 </table>
 
