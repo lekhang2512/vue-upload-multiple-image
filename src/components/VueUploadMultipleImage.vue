@@ -444,11 +444,11 @@ export default {
           if (this.images.length && this.images[this.currentIndexImage]) {
             this.images[this.currentIndexImage].path = dataURI
             this.images[this.currentIndexImage].name = file.name
+            this.$emit('edit-image', formData, this.currentIndexImage, this.images)
           }
         }
       }
       reader.readAsDataURL(file)
-      this.$emit('edit-image', formData, this.currentIndexImage, this.images)
     },
     uploadFieldChange (e) {
       let files = e.target.files || e.dataTransfer.files
