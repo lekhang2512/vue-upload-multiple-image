@@ -390,7 +390,7 @@ export default {
       e.preventDefault()
       e.stopPropagation()
     },
-    onDrop (e) {
+    async onDrop (e) {
       this.isDragover = false
       e.stopPropagation()
       e.preventDefault()
@@ -401,12 +401,13 @@ export default {
       if (!this.isValidNumberOfImages(files.length)) {
         return false
       }
-      forEach(files, (value, index) => {
-        this.createImage(value)
+      for (let i = 0; i < files.length; i++) {
+        await this.createImage(files[i]);
+
         if (!this.multiple) {
           return false
         }
-      })
+      }
       if (document.getElementById(this.idUpload)) {
         document.getElementById(this.idUpload).value = []
       }
@@ -415,23 +416,30 @@ export default {
       this.isDragover = true
     },
     createImage (file) {
-      if (this.disabled) return
-      let reader = new FileReader()
-      let formData = new FormData()
-      formData.append('file', file)
-      reader.onload = (e) => {
-        let dataURI = e.target.result
-        if (dataURI) {
-          if (!this.images.length) {
-            this.images.push({ name: file.name, path: dataURI, highlight: 1, default: 1 })
-            this.currentIndexImage = 0
-          } else {
-            this.images.push({ name: file.name, path: dataURI, highlight: 0, default: 0 })
-          }
-          this.$emit('upload-success', formData, this.images.length - 1, this.images)
+      return new Promise((resolve) => {
+        if (this.disabled) {
+          return resolve();
         }
-      }
-      reader.readAsDataURL(file)
+        let reader = new FileReader()
+        let formData = new FormData()
+        formData.append('file', file)
+        reader.onload = (e) => {
+          let dataURI = e.target.result
+          if (dataURI) {
+            if (!this.images.length) {
+              this.images.push({ name: file.name, path: dataURI, highlight: 1, default: 1 })
+              this.currentIndexImage = 0
+            } else {
+              this.images.push({ name: file.name, path: dataURI, highlight: 0, default: 0 })
+            }
+            this.$emit('upload-success', formData, this.images.length - 1, this.images)
+          }
+        }
+        reader.onloadend = () => {
+          resolve();
+        }
+        reader.readAsDataURL(file)
+      });
     },
     editImage (file) {
       if (this.disabled) return
@@ -450,7 +458,7 @@ export default {
       reader.readAsDataURL(file)
       this.$emit('edit-image', formData, this.currentIndexImage, this.images)
     },
-    uploadFieldChange (e) {
+    async uploadFieldChange (e) {
       let files = e.target.files || e.dataTransfer.files
       if (!files.length) {
         return false
@@ -458,9 +466,9 @@ export default {
       if (!this.isValidNumberOfImages(files.length)) {
         return false
       }
-      forEach(files, (value, index) => {
-        this.createImage(value)
-      })
+      for (let i = 0; i < files.length; i++) {
+        await this.createImage(files[i]);
+      }
       if (document.getElementById(this.idUpload)) {
         document.getElementById(this.idUpload).value = []
       }
