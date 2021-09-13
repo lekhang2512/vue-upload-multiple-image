@@ -1,5 +1,7 @@
 <template>
-  <div
+  <div class="">
+  <div class="row mt-4">
+  <div class="col-12"
     style="outline: none;"
     @drag="preventEvent"
     @dragstart="preventEvent"
@@ -18,6 +20,8 @@
         v-if="isDragover"
         @drop="onDrop"
       >
+
+
         <div class="centered full-width text-center text-primary">
           <svg
             class="icon-drag-drop"
@@ -28,12 +32,17 @@
           </svg>
           <h4 class="drop-text-here"><b>{{dropText}}</b></h4>
         </div>
+
+
       </div>
+
+      <!-- icon of finger -->
       <div
         v-else
         class="image-center position-absolute display-flex flex-column justify-content-center align-items-center"
         @dragover.prevent="onDragover"
-      >
+        >
+
         <div>
           <svg
             class="image-icon-drag"
@@ -45,11 +54,13 @@
             <path d="M323 122.4c-3.2 0-6 2.6-6 5.7v39.2c0 3.2 2.8 5.7 6 5.7s6-2.6 6-5.7v-39.2c0-3.1-2.8-5.7-6-5.7zm6-60.6c0-3.2-2.8-5.7-6-5.7s-6 2.6-6 5.7v40c0 3.2 2.8 5.7 6 5.7s6-2.6 6-5.7v-40zM301.2 15h3.6c6.8 0 12.2 5.6 12.2 12.4v8.1c0 3.2 2.8 5.7 6 5.7s6-2.6 6-5.7v-8.1C329 14.3 317.9 3 304.8 3h-3.6c-3.2 0-5.7 2.8-5.7 6s2.5 6 5.7 6zm-66.3 0h40c3.2 0 5.7-2.8 5.7-6s-2.6-6-5.7-6h-40c-3.2 0-5.7 2.8-5.7 6s2.5 6 5.7 6zm-60.6 292h40c3.2 0 5.7-2.3 5.7-5.5s-2.6-5.5-5.7-5.5h-40c-3.2 0-5.7 2.3-5.7 5.5s2.5 5.5 5.7 5.5zm-5.8-292h40c3.2 0 5.7-2.8 5.7-6s-2.6-6-5.7-6h-40c-3.2 0-5.7 2.8-5.7 6s2.6 6 5.7 6zM37.1 19.8c1.4 0 2.7-.6 3.8-1.5 2.3-2 5.2-3.2 8.2-3.2h26.8c3.2 0 5.7-2.8 5.7-6s-2.6-6-5.7-6H49.1c-5.9 0-11.5 2.5-15.9 6.5-2.3 2.1-2.5 5.9-.4 8.2 1.1 1.2 2.7 2 4.3 2z"></path>
           </svg>
         </div>
+
         <div class="text-center">
           <label class="drag-text">{{dragText}}</label>
           <br>
           <a class="browse-text">{{browseText}}</a>
         </div>
+
         <div class="image-input position-absolute full-width full-height">
           <label
             :for="idUpload"
@@ -57,18 +68,25 @@
           >
           </label>
         </div>
-      </div>
-    </div>
 
+      </div>
+
+    </div>
+    <!-- ending of where there is no image -->
+
+
+
+    <!-- starting of when there is image -->
     <div
       class="image-container position-relative text-center image-list"
       v-else
-    >
+      >
+
       <div
         class="drag-upload-cover position-absolute"
         v-if="isDragover"
         @drop="onDrop"
-      >
+        >
         <div class="centered full-width text-center text-primary">
           <svg
             class="icon-drag-drop"
@@ -80,15 +98,30 @@
           <h4 class="drop-text-here"><b>{{dropText}}</b></h4>
         </div>
       </div>
-      <div
+
+
+
+      <div class="height-inherit"
         v-else
         @dragover.prevent="onDragover"
-      >
-        <div
-          class="preview-image full-width position-relative cursor-pointer"
-          @click="openGallery(currentIndexImage)"
         >
+
+        <!--div of actual image -->
+        <div
+          class="height-inherit preview-image full-width position-relative cursor-pointer" 
+          :style="{backgroundImage: 'url(' + imagePreview + ')',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center center',
+                     }"
+          @click="openGallery(currentIndexImage)"
+          >
+            <div class="bg-text"> 
+              <h3>Click the images to preview</h3>
+            </div>
+           
           <div class="image-overlay position-relative full-width full-height"></div>
+
           <div class="image-overlay-details full-width">
             <svg
               class="icon-overlay"
@@ -99,13 +132,18 @@
               <path d="M511.3 465.3L371.2 325.2c-1-1-2.6-1-3.6 0l-11.5 11.5c31.6-35.9 50.8-82.9 50.8-134.3C406.9 90.3 315.6-1 203.4-1 91.3-1 0 90.3 0 202.4s91.3 203.4 203.4 203.4c51.4 0 98.5-19.2 134.3-50.8l-11.5 11.5c-1 1-1 2.6 0 3.6l140.1 140.1c1 1 2.6 1 3.6 0l41.4-41.4c.9-.9.9-2.5 0-3.5zm-307.9-92.5C109.5 372.8 33 296.4 33 202.4S109.5 32.1 203.4 32.1s170.4 76.4 170.4 170.4-76.4 170.3-170.4 170.3z"></path>
             </svg>
           </div>
-          <div class="show-image centered">
+
+          <!--actual image just incase anyone cares -->
+          <!--<div class="centered">
             <img
-              class="show-img img-responsive"
+              class="show-img"
               :src="imagePreview"
             >
-          </div>
+          </div>-->
+
         </div>
+        <!--ending of div of actual image -->
+
         <div
           class="image-bottom display-flex position-absolute full-width align-items-center justify-content-between"
           :class="!showPrimary && 'justify-content-end'"
@@ -273,6 +311,8 @@
       :showCaption="false"
     >
     </vue-image-lightbox-carousel>
+  </div>
+  </div>
   </div>
 </template>
 
@@ -564,6 +604,20 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.bg-text{
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 5px;
+    text-align: center;
+}
 .text-small {
   font-size: 11px;
 }
@@ -617,10 +671,8 @@ export default {
   display: block;
 }
 .image-container {
-  width: 190px;
-  height: 180px;
+  height: 480px;
   border: 1px dashed #d6d6d6;
-  border-radius: 4px;
   background-color: #fff;
 }
 .image-center {
@@ -629,8 +681,8 @@ export default {
 }
 .image-icon-drag {
   fill: #c9c8c8;
-  height: 50px;
-  width: 50px;
+  height: 80px;
+  width: 80px;
 }
 .drag-text {
   padding-top: 5px;
@@ -685,16 +737,16 @@ export default {
 .image-list {
   border: 1px solid #d6d6d6;
 }
+.height-inherit{
+  height:inherit;
+}
 .preview-image {
-  height: 140px;
   padding: 5px;
-  border-radius: 15px;
   box-sizing: border-box;
 }
 .image-overlay {
   background: rgba(0, 0, 0, 0.7);
   z-index: 10;
-  border-radius: 5px;
   opacity: 0;
   transition: all 0.3s ease-in-out 0s;
 }
@@ -723,7 +775,6 @@ export default {
   max-height: 100px;
   max-width: 140px;
   display: block;
-  vertical-align: middle;
 }
 /*image bottom*/
 .image-bottom {
@@ -732,9 +783,10 @@ export default {
   height: 40px;
   padding: 5px 10px;
   box-sizing: border-box;
+  z-index: 41;
+  background-color: white;
 }
 .image-primary {
-  border-radius: 4px;
   background-color: #e3edf7;
   padding: 3px 7px;
   font-size: 11px;
