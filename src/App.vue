@@ -1,21 +1,15 @@
 <template>
   <div id="my-strictly-unique-vue-upload-multiple-image" style="display: flex; justify-content: center;">
-    <vue-upload-multiple-image
-      @upload-success="uploadImageSuccess"
-      @before-remove="beforeRemove"
-      @edit-image="editImage"
-      @data-change="dataChange"
-      @limit-exceeded="limitExceeded"
-      ></vue-upload-multiple-image>
+    <vue-upload-multiple-image @upload-success="uploadImageSuccess" @before-remove="beforeRemove" @edit-image="editImage"
+      @data-change="dataChange" @limit-exceeded="limitExceeded"></vue-upload-multiple-image>
   </div>
 </template>
 
 <script>
 import VueUploadMultipleImage from './components/VueUploadMultipleImage'
-import axios from 'axios'
 export default {
   name: 'app',
-  data () {
+  data() {
     return {
     }
   },
@@ -30,7 +24,7 @@ export default {
       //   console.log(response)
       // })
     },
-    beforeRemove (index, done, fileList) {
+    beforeRemove(index, done, fileList) {
       console.log('index', index, fileList)
       var r = confirm("remove image")
       if (r == true) {
@@ -38,13 +32,13 @@ export default {
       } else {
       }
     },
-    editImage (formData, index, fileList) {
+    editImage(formData, index, fileList) {
       console.log('edit data', formData, index, fileList)
     },
-    dataChange (data) {
+    dataChange(data) {
       console.log(data)
     },
-    limitExceeded(amount){
+    limitExceeded(amount) {
       console.log(amount)
     }
   }
